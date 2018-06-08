@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  tensorflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_REGISTRY}/tensorflow
+    ports:
+      - 8888:8888
+    networks:
+      news-network:
+        aliases:
+          - tensorflow
+
+networks:
+  news-network:
+    external: true

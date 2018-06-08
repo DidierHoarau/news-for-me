@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_REGISTRY}/proxy
+    labels:
+      - "discovery.service.name=example.com"
+      - "discovery.service.port=80"
+      - "discovery.service.https=y"
+    ports:
+      - 80
+    networks:
+      webproxy-network:
+        aliases:
+          - proxy
+      news-network:
+        aliases:
+          - proxy
+
+networks:
+  webproxy-network:
+    external: true
+  news-network:
+    external: true

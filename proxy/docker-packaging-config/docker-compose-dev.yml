@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_REGISTRY}/proxy
+    ports:
+      - 82:80
+    networks:
+      news-network:
+        aliases:
+          - proxy
+
+networks:
+  news-network:
+    external: true

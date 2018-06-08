@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_REGISTRY}/test
+    volumes:
+      - ../src:/opt/app/src
+      - ../package.json:/opt/app/package.json
+      - ../package-lock.json:/opt/app/package-lock.json
+      - ./start-cmd-dev.sh:/start-cmd.sh
+    networks:
+      news-network:
+        aliases:
+          - proxy
+
+networks:
+  news-network:
+    external: true

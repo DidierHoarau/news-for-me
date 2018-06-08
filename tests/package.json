@@ -1,0 +1,30 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "packaging:init": "chmod +x docker-packaging-config/*.sh && docker-packaging-config/init.sh",
+    "//": "-------------------------------------------------------------------",
+    "packaging:prepare": "docker-packaging/prepare.sh",
+    "packaging:image-build": "docker-packaging/image-build.sh",
+    "packaging:image-push": "docker-packaging/image-push.sh",
+    "packaging:service-deploy": "docker-packaging/service-deploy.sh",
+    "packaging:service-run": "docker-packaging/service-run.sh",
+    "///": "------------------------------------------------------------------",
+    "run": "python src/app.py",
+    "////": "-----------------------------------------------------------------",
+    "dev": "npm-watch run",
+    "dev:docker": "docker-packaging-config/start-dev-docker.sh || true"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "npm-watch": "^0.3.0",
+    "pip": "0.0.1"
+  },
+  "watch": {
+    "run": "src/app.py"
+  }
+}
